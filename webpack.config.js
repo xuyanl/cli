@@ -1,19 +1,22 @@
 
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const devMode = process.env.NODE_ENV !== "production";
 
 /** @type {import('webpack').Configuration} */
 const config = {
-    entry: './scr/app.tx',
+    entry: './src/app.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[id][chunkhash].js',
+        assetModuleFilename: 'assets/[hash][ext]',
         clean: true
     },
     resolve: {
         alias: {
-            '@': './src'
+            '@': path.resolve(__dirname, './src')
         }
     },
     module: {
@@ -36,6 +39,23 @@ const config = {
                     loader: "babel-loader", // 使用babel编译，可以直接添加 options 选项，也可以在根目录新建babel.config.json文件
                 },
             },
+            {
+                test: /\.(png|jpg|gif)$/i,//资源模块处理，不需要用 file-loader等去处理了，https://webpack.docschina.org/guides/asset-modules/#root
+                type: 'asset'
+            }
         ],
     },
+    plugins: [
+        // 需要按装html-webpack-plugin包
+        new HtmlWebpackPlugin({
+            template: 'src/index.html' // src目录下需要有这个文件
+        }),
+        // 打包分析工具 webpack-bundle-analyzer
+        // new BundleAnalyzerPlugin({
+        //     generateStatsFile: true,
+        //     analyzerPort: 'auto',
+        //     openAnalyzer: false
+        // })
+    ]
 }
+module.exports = config
