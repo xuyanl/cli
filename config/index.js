@@ -1,12 +1,15 @@
+const devConfig = require('./dev');
+const pordConfig = require('./prod');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('webpack-merge');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
 /** @type {import('webpack').Configuration} */
 const config = {
-	entry: './src/app.ts',
+	entry: path.resolve(__dirname, '../src/app.tsx'),
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		filename: '[id][chunkhash].js',
@@ -54,7 +57,7 @@ const config = {
 	plugins: [
 		// 需要按装html-webpack-plugin包
 		new HtmlWebpackPlugin({
-			template: 'src/index.html', // src目录下需要有这个文件
+			template: path.resolve(__dirname, '../src/index.html'), // src目录下需要有这个文件
 		}),
 		// 打包分析工具 webpack-bundle-analyzer
 		// new BundleAnalyzerPlugin({
@@ -64,4 +67,4 @@ const config = {
 		// })
 	],
 };
-module.exports = config;
+module.exports = merge(config, devMode ? devConfig : pordConfig);
