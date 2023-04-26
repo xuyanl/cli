@@ -4,8 +4,8 @@
     "description": "",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "webpack --config config",
-        "build": "webpack --config config"
+        "dev": "cross-env NODE_ENV=development webpack server --config config",
+        "build": "cross-env NODE_ENV=production webpack --config config"
     },
     "author": "",
     "license": "ISC",
@@ -22,6 +22,7 @@
         "@babel/preset-typescript": "^7.21.4",
         "@types/react-dom": "^18.0.11",
         "babel-loader": "^9.1.2",
+        "cross-env": "^7.0.3",
         "css-loader": "^6.7.3",
         "html-webpack-plugin": "^5.5.1",
         "less": "^4.1.3",

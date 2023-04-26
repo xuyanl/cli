@@ -9,7 +9,7 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 /** @type {import('webpack').Configuration} */
 const config = {
-	entry: path.resolve(__dirname, '../src/app.tsx'),
+	entry: path.resolve(__dirname, '../src/index'),
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		filename: '[id][chunkhash].js',
@@ -20,6 +20,7 @@ const config = {
 		alias: {
 			'@': path.resolve(__dirname, '../src'),
 		},
+		extensions: ['.tsx', '.ts', '.jsx', '...']
 	},
 	module: {
 		rules: [
@@ -57,7 +58,7 @@ const config = {
 	plugins: [
 		// 需要按装html-webpack-plugin包
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, '../src/index.html'), // src目录下需要有这个文件
+			template: path.resolve(__dirname, '../index.html'), // src目录下需要有这个文件
 		}),
 		// 打包分析工具 webpack-bundle-analyzer
 		// new BundleAnalyzerPlugin({
