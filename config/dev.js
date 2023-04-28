@@ -4,10 +4,11 @@ const path = require('path');
 const config = {
 	mode: 'development',
 	devServer: {
+		historyApiFallback: true,
 		// static: {
-		// 	directory: path.join(__dirname, 'dist'),
+		// 	directory: path.join(__dirname, '../dist'),
 		// },
-		open: true,
+		// open: true,
 		port: 'auto',
 		proxy: {
 		}

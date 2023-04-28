@@ -1,6 +1,10 @@
-// import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { useRoutes, HashRouter } from 'react-router-dom'
 import App from './app'
+import { useRoutes, HashRouter, BrowserRouter } from 'react-router-dom'
+
 const root = createRoot(document.getElementById('root')!)
-root.render(<App />)
+root.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+)
