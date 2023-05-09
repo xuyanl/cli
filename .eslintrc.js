@@ -15,7 +15,8 @@ module.exports = {
         indent: ['error', 4],
         quotes: ['error', 'single'],
         '@typescript-eslint/indent': ['error', 4],
-        '@typescript-eslint/explicit-function-return-type': 'warn',
-        '@typescript-eslint/quotes': ['error', 'single']
+        '@typescript-eslint/explicit-function-return-type': 0,
+        '@typescript-eslint/quotes': ['error', 'single'],
+        '@typescript-eslint/no-unused-vars': 0
     }
 }
