@@ -3,7 +3,7 @@ import App from './app'
 import { useRoutes, HashRouter, BrowserRouter } from 'react-router-dom'
 import { Suspense } from 'react'
 
-const root = createRoot(document.getElementById('root')!)
+const root = createRoot(document.getElementById('root') as HTMLDivElement)
 root.render(
     <BrowserRouter>
         <Suspense fallback={<div>loading...</div>}>

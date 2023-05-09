@@ -1,10 +1,10 @@
-import { RouteObject } from 'react-router-dom'
+import { type RouteObject } from 'react-router-dom'
 
 import Home from './pages/home'
 import { lazy } from 'react'
 
-const sleep = (time: number) => {
-    return new Promise((resolve, reject) => {
+const sleep = async (time: number) => {
+    return await new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve('')
         }, time)
@@ -13,13 +13,13 @@ const sleep = (time: number) => {
 
 const Details = lazy(async () => {
     await sleep(5000)
-    return import('./pages/details/')
+    return await import('./pages/details/')
 })
 
 const routers: RouteObject[] = [
     {
         path: '/',
-        element: <Home />
+        element: <Home />,
     },
     {
         path: '/details',
@@ -30,10 +30,10 @@ const routers: RouteObject[] = [
             {
                 index: true,
                 // path: '/details/home',
-                element: <Home />
-            }
-        ]
-    }
+                element: <Home />,
+            },
+        ],
+    },
 ]
 
 export default routers
