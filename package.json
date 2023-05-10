@@ -11,11 +11,6 @@
     },
     "author": "",
     "license": "ISC",
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
     "lint-staged": {
         "src/**/*.{js,tsx,ts,json,jsx}": [
             "prettier --write",

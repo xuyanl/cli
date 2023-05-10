@@ -1,5 +1,14 @@
 module.exports = {
     extends: ['@commitlint/config-conventional'],
+    rules: {
+        // 'body-leading-blank': [2, 'always'], // body换行
+        // 'header-max-length': [2, 'never', 72], // header 最长72
+        'type-enum-rule': [2, 'never'],
+        'subject-enum-rule': [2, 'never'],
+        'type-enum': [0, 'never'],
+        'type-empty': [0, 'always'],
+        'subject-empty': [0, 'always']
+    },
     prompt: {
         questions: {
             type: {
