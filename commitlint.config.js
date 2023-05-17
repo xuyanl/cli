@@ -1,13 +1,28 @@
+
+// 官网文档 https://commitlint.js.org/#/
+
+const checkType = (header) => {
+    header = `${header}`
+    const enumType = ['feat', 'fix', 'style', 'chore', 'test', 'ci', 'refactor', 'revert', 'reformat', 'docs', 'perf']
+    const realType = header.split(':')[0]
+    return enumType.includes(realType)
+}
+
+const checkSubject = (header) => {
+    header = `${header}`
+    const realSubject = header.split(':')[1]
+    if (!realSubject) {
+        return false
+    }
+    return realSubject.length > 0
+}
+
 module.exports = {
     extends: ['@commitlint/config-conventional'],
     rules: {
-        // 'body-leading-blank': [2, 'always'], // body换行
-        // 'header-max-length': [2, 'never', 72], // header 最长72
         'type-enum-rule': [2, 'never'],
-        'subject-enum-rule': [2, 'never'],
-        'type-enum': [0, 'never'],
-        'type-empty': [0, 'always'],
-        'subject-empty': [0, 'always']
+        'subject-enum-rule': [2, 'never']
+
     },
     prompt: {
         questions: {
@@ -73,37 +88,21 @@ module.exports = {
             }
 
         }
-    }
+    },
+    plugins: [
+        {
+            rules: {
+                'type-enum-rule': ({ header }) => {
+                    return [
+                        checkType(header),
+                        '需要包含提交类型，格式如: "feat: 开发新功能" 中的feat, ' +
+                        '可选值有: feat/fix/style/test/chore/ci/revert/docs/refactor/build/perf, 类型后面紧跟英文冒号分隔主题信息'
+                    ]
+                },
+                'subject-enum-rule': ({ header }) => {
+                    return [checkSubject(header), '需要包含提交主题, 格式如: "feat: 开发新功能" 中的 开发新功能']
+                }
+            }
+        }
+    ]
 }
-// build
-// chore
-// ci
-// docs
-// feat
-// fix
-// perf
-// refactor
-// revert
-// style
-// test
-
-// feat：新功能
-// fix：修补 Bug
-// docs：文档更新
-// style：格式改变，例如对代码进行了格式化，修改了空格等方式。
-// refactor：对现有的代码进行了重构，注意与修补 Bug 的区别。
-// test：增加测试用例
-// chore：对构建过程或辅助工具和库（如文档生成）的更改
-// revert：撤销上一个提交。
-
-// feat	新增一个功能
-// fix	修复一个Bug
-// docs	文档变更
-// style	代码格式（不影响功能，例如空格、分号等格式修正）
-// refactor	代码重构
-// perf	改善性能
-// test	测试
-// build	变更项目构建或外部依赖（例如scopes: webpack、gulp、npm等）
-// ci	更改持续集成软件的配置文件和package中的scripts命令，例如scopes: Travis, Circle等
-// chore	变更构建流程或辅助工具
-// revert	代码回退

@@ -19,7 +19,7 @@ const Details = lazy(async () => {
 const routers: RouteObject[] = [
     {
         path: '/',
-        element: <Home />,
+        element: <Home />
     },
     {
         path: '/details',
@@ -30,10 +30,10 @@ const routers: RouteObject[] = [
             {
                 index: true,
                 // path: '/details/home',
-                element: <Home />,
-            },
-        ],
-    },
+                element: <Home />
+            }
+        ]
+    }
 ]
 
 export default routers
