@@ -1,5 +1,11 @@
+import './index.less'
 const Home = () => {
-    return <div>HomeHomeHomeHomeHome</div>
+    return (
+        <div className={'home'}>
+            HomeHomeHomeHomeHome
+            <div className={'aaa'}>fadsfasdfasdf</div>
+        </div>
+    )
 }
 
 export default Home

@@ -1,6 +1,8 @@
 import { type RouteObject } from 'react-router-dom'
 
 import Home from './pages/home'
+import Test from './pages/test'
+import Det from './pages/details/'
 import { lazy } from 'react'
 
 const sleep = async (time: number) => {
@@ -12,7 +14,7 @@ const sleep = async (time: number) => {
 }
 
 const Details = lazy(async () => {
-    await sleep(5000)
+    // await sleep(5000)
     return await import('./pages/details/')
 })
 
@@ -23,14 +25,18 @@ const routers: RouteObject[] = [
     },
     {
         path: '/details',
-        // element: <Details />,
+        element: <Det />,
         // element:()=>Details,
-        Component: Details,
+        // Component: Details,
         children: [
             {
-                index: true,
-                // path: '/details/home',
+                // index: true,
+                path: '/details/home',
                 element: <Home />
+            },
+            {
+                path: '/details/test',
+                element: <Test />
             }
         ]
     }

@@ -5,9 +5,9 @@ const config = {
 	mode: 'development',
 	devServer: {
 		historyApiFallback: true,
-		// static: {
-		// 	directory: path.join(__dirname, '../dist'),
-		// },
+		static: {
+			directory: path.join(__dirname, '../dist'),
+		},
 		// open: true,
 		port: 'auto',
 		proxy: {

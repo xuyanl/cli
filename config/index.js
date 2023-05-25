@@ -14,6 +14,7 @@ const config = {
 		path: path.resolve(__dirname, '../dist'),
 		filename: '[id][chunkhash].js',
 		assetModuleFilename: 'assets/[hash][ext]',
+		publicPath: '/',
 		clean: true,
 	},
 	resolve: {
@@ -37,6 +38,9 @@ const config = {
 					devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
+						options: {
+							modules: 'global',
+						},
 					},
 					'less-loader',
 				], // 使用loader来编译css文件，loader的执行顺序是从右往左，这里是先 css-loader，然后style-loader
